@@ -1,0 +1,6 @@
+{"_id":{"$oid":"60967908d6d9141a286511d9"},"name":"Pepsi","price":20,"cuisine":"indian","createdAt":{"$date":"2021-05-08T11:42:00.382Z"},"quantity":8,"__v":0}
+{"_id":{"$oid":"6096792ad6d9141a286511da"},"name":"Kulfi","price":20,"cuisine":"indian","createdAt":{"$date":"2021-05-08T11:42:34.314Z"},"__v":0}
+{"_id":{"$oid":"60967963a56b5618549ebce2"},"name":"Chai","price":10,"cuisine":"indian","createdAt":{"$date":"2021-05-08T11:43:31.349Z"},"quantity":5,"__v":0}
+{"_id":{"$oid":"6096b42d0b35691b789914eb"},"name":"Pizza","price":300,"cuisine":"italian","createdAt":{"$date":"2021-05-08T15:54:21.752Z"},"__v":0}
+{"_id":{"$oid":"6096d192235df770c04611d2"},"name":"Noodles","price":100,"cuisine":"Chinese","createdAt":{"$date":"2021-05-08T17:59:46.201Z"},"__v":0}
+{"_id":{"$oid":"6096d1a3235df770c04611d3"},"name":"Sandwich","price":40,"cuisine":"American","createdAt":{"$date":"2021-05-08T18:00:03.182Z"},"__v":0}
