@@ -57,7 +57,7 @@ app.post(
       let addFood = new Food(newFoodItem);
       console.log(addFood);
       await addFood.save();
-      return res.json("Food item added to inventory");
+      return res.json({ msg: "Food item added to inventory" });
     } catch (error) {
       console.log(error);
       res.status(500).json("server error");
@@ -110,3 +110,31 @@ app.get("*", (req, res) => {
 app.listen(PORT, () => {
   console.log(`listening at port ${PORT}`);
 });
+
+const cluster = require("cluster");
+const http = require("http");
+const numCPUs = require("os").cpus().length;
+
+if (cluster.isPrimary) {
+  console.log(`Primary ${process.pid} is running`);
+
+  // Fork workers.
+  for (let i = 0; i < numCPUs; i++) {
+    cluster.fork();
+  }
+
+  cluster.on("exit", (worker, code, signal) => {
+    console.log(`worker ${worker.process.pid} died`);
+  });
+} else {
+  // Workers can share any TCP connection
+  // In this case it is an HTTP server
+  http
+    .createServer((req, res) => {
+      res.writeHead(200);
+      res.end("hello world\n");
+    })
+    .listen(8000);
+
+  console.log(`Worker ${process.pid} started`);
+}

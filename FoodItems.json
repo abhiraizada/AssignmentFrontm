@@ -4,3 +4,7 @@
 {"_id":{"$oid":"6096b42d0b35691b789914eb"},"name":"Pizza","price":300,"cuisine":"italian","createdAt":{"$date":"2021-05-08T15:54:21.752Z"},"__v":0}
 {"_id":{"$oid":"6096d192235df770c04611d2"},"name":"Noodles","price":100,"cuisine":"Chinese","createdAt":{"$date":"2021-05-08T17:59:46.201Z"},"__v":0}
 {"_id":{"$oid":"6096d1a3235df770c04611d3"},"name":"Sandwich","price":40,"cuisine":"American","createdAt":{"$date":"2021-05-08T18:00:03.182Z"},"__v":0}
+{"_id":{"$oid":"60978295309aa434ec3db20b"},"name":"Coffee","price":30,"cuisine":"England","quantity":10,"createdAt":{"$date":"2021-05-09T06:35:01.801Z"},"__v":0}
+{"_id":{"$oid":"609782f4d2f5841d1c286c94"},"name":"Mutton Kabab","price":30,"cuisine":"Pakistan","quantity":5,"createdAt":{"$date":"2021-05-09T06:36:36.222Z"},"__v":0}
+{"_id":{"$oid":"60978314d2f5841d1c286c95"},"name":"Afghani Chaap","price":120,"cuisine":"Afghanistan","quantity":5,"createdAt":{"$date":"2021-05-09T06:37:08.031Z"},"__v":0}
+{"_id":{"$oid":"60978333d2f5841d1c286c96"},"name":"Momos","price":40,"cuisine":"Nepal","quantity":50,"createdAt":{"$date":"2021-05-09T06:37:39.93Z"},"__v":0}

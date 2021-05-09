@@ -2,8 +2,8 @@ const mongoose = require("mongoose");
 
 const db = mongoose
   .connect(
-    "ADD YOUR MONGO URI HERE with Collection Name Food",
-    //mongodb+srv://<username>:<password>@cluster0.kcoyy.mongodb.net/food?retryWrites=true&w=majority
+    //"ADD YOUR MONGO URI HERE with Collection Name as Food",
+    //"mongodb+srv://?:?@cluster0.kcoyy.mongodb.net/food?retryWrites=true&w=majority",
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
