@@ -25,7 +25,7 @@ app.get("/", async (req, res) => {
     let sortBy = req.query.sortBy === "desc" ? -1 : 1;
 
     console.log("sortBy", sortBy);
-    const sortOn = req.query.sortOn ? req.query.sortOn : "Name";
+    const sortOn = req.query.sortOn ? req.query.sortOn : "name";
     console.log(`sortON`, sortOn);
 
     const result = await Food.find()
