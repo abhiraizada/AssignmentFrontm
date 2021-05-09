@@ -12,21 +12,29 @@ app.use(express.json());
 //GET allFoodItems
 app.get("/", async (req, res) => {
   try {
-    const sortBy = req.query.sortBy;
-    const sortOn = req.query.sortOn;
-    const limit = parseInt(req.query.limit);
     //Pagination implemented here based on input from FE
-    const skip = parseInt(req.query.skip);
+
     //If the skip size to be handled at server side than we will receive page num from FE
-    //  const pageSize = 5;  let us say page size to be of 5 JSON objects
-    //  const skip = pageSize * ( (page num from FE) - 1 ); for ever page more 20 elements will skip
+    //  const pageSize = 3;  let us say page size to be of 3 JSON objects
+    //  const skip =  for ever page more 3 elements will skip
+    let pageSize = 3;
+    console.log(`page size`, pageSize);
+    let pageNum = parseInt(req.query.pageNum) ? parseInt(req.query.pageNum) : 1;
+    let skip = pageSize * (pageNum - 1);
+    console.log(`skipsize`, skip);
+    let sortBy = req.query.sortBy === "desc" ? -1 : 1;
+
+    console.log("sortBy", sortBy);
+    const sortOn = req.query.sortOn ? req.query.sortOn : "Name";
+    console.log(`sortON`, sortOn);
+
     const result = await Food.find()
-      .limit(limit)
+      .limit(pageSize)
       .skip(skip)
-      .sort({ sortOn: -1 });
+      .sort({ [sortOn]: sortBy });
     res.status(200).json(result);
   } catch (error) {
-    res.status(500).json("server error");
+    res.status(500).json([{ msg: error.message }, { type: "server error" }]);
   }
 });
 
@@ -111,30 +119,30 @@ app.listen(PORT, () => {
   console.log(`listening at port ${PORT}`);
 });
 
-const cluster = require("cluster");
-const http = require("http");
-const numCPUs = require("os").cpus().length;
+// const cluster = require("cluster");
+// const http = require("http");
+// const numCPUs = require("os").cpus().length;
 
-if (cluster.isPrimary) {
-  console.log(`Primary ${process.pid} is running`);
+// if (cluster.isPrimary) {
+//   console.log(`Primary ${process.pid} is running`);
 
-  // Fork workers.
-  for (let i = 0; i < numCPUs; i++) {
-    cluster.fork();
-  }
+//   // Fork workers.
+//   for (let i = 0; i < numCPUs; i++) {
+//     cluster.fork();
+//   }
 
-  cluster.on("exit", (worker, code, signal) => {
-    console.log(`worker ${worker.process.pid} died`);
-  });
-} else {
-  // Workers can share any TCP connection
-  // In this case it is an HTTP server
-  http
-    .createServer((req, res) => {
-      res.writeHead(200);
-      res.end("hello world\n");
-    })
-    .listen(8000);
+//   cluster.on("exit", (worker, code, signal) => {
+//     console.log(`worker ${worker.process.pid} died`);
+//   });
+// } else {
+//   // Workers can share any TCP connection
+//   // In this case it is an HTTP server
+//   http
+//     .createServer((req, res) => {
+//       res.writeHead(200);
+//       res.end("hello world\n");
+//     })
+//     .listen(8000);
 
-  console.log(`Worker ${process.pid} started`);
-}
+//   console.log(`Worker ${process.pid} started`);
+// }
